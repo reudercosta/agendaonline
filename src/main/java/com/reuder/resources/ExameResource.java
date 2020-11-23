@@ -12,7 +12,7 @@ import com.reuder.domain.Exame;
 import com.reuder.service.ExameService;
 
 @RestController
-@RequestMapping(value = "/agendas")
+@RequestMapping(value = "/exames")
 public class ExameResource {
 	
 	@Autowired

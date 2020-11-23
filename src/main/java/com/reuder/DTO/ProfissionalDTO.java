@@ -1,21 +1,14 @@
-package com.reuder.domain;
+package com.reuder.DTO;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.reuder.domain.Profissional;
 
-@Entity
-public class Profissional implements Serializable {
+public class ProfissionalDTO implements Serializable {
 
 	/**
 	 * 
@@ -26,19 +19,16 @@ public class Profissional implements Serializable {
 	private Integer id;
 	private String nome;
 	private String regitroConselhoProfissional;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "profissional")
-	private Set<Agenda> agendas = new HashSet<>();
-
-	public Profissional() {
+	
+	public ProfissionalDTO() {
 		
 	}
-	public Profissional(Integer id, String nome, String regitroConselhoProfissional) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.regitroConselhoProfissional = regitroConselhoProfissional;
+
+	public ProfissionalDTO(Profissional profissional) {
+		
+		this.id = profissional.getId();
+		this.nome = profissional.getNome();
+		this.regitroConselhoProfissional = profissional.getRegitroConselhoProfissional();
 	}
 
 	public Integer getId() {
@@ -65,14 +55,6 @@ public class Profissional implements Serializable {
 		this.regitroConselhoProfissional = regitroConselhoProfissional;
 	}
 
-	public Set<Agenda> getAgendas() {
-		return agendas;
-	}
-
-	public void setAgendas(Set<Agenda> agendas) {
-		this.agendas = agendas;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,7 +71,7 @@ public class Profissional implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Profissional other = (Profissional) obj;
+		ProfissionalDTO other = (ProfissionalDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -97,5 +79,6 @@ public class Profissional implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
 }

@@ -1,22 +1,19 @@
-package com.reuder.domain;
+package com.reuder.DTO;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
-public class Profissional implements Serializable {
+import com.reuder.service.validation.ProfissionalInsert;
 
+@ProfissionalInsert
+public class ProfissionalNewDTO implements Serializable {
+	
 	/**
 	 * 
 	 */
@@ -24,21 +21,15 @@ public class Profissional implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório!!")
 	private String nome;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório!!")
 	private String regitroConselhoProfissional;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "profissional")
-	private Set<Agenda> agendas = new HashSet<>();
-
-	public Profissional() {
+	public ProfissionalNewDTO() {
 		
-	}
-	public Profissional(Integer id, String nome, String regitroConselhoProfissional) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.regitroConselhoProfissional = regitroConselhoProfissional;
 	}
 
 	public Integer getId() {
@@ -65,14 +56,6 @@ public class Profissional implements Serializable {
 		this.regitroConselhoProfissional = regitroConselhoProfissional;
 	}
 
-	public Set<Agenda> getAgendas() {
-		return agendas;
-	}
-
-	public void setAgendas(Set<Agenda> agendas) {
-		this.agendas = agendas;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,7 +72,7 @@ public class Profissional implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Profissional other = (Profissional) obj;
+		ProfissionalNewDTO other = (ProfissionalNewDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -97,5 +80,5 @@ public class Profissional implements Serializable {
 			return false;
 		return true;
 	}
-
+	
 }

@@ -11,7 +11,7 @@ import com.reuder.domain.Agenda;
 import com.reuder.service.AgendaService;
 
 @RestController
-@RequestMapping(value = "/agenda")
+@RequestMapping(value = "/agendas")
 public class AgendaResource {
 	
 	@Autowired

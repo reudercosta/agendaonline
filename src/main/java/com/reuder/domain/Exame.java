@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,10 +24,14 @@ public class Exame implements Serializable {
 	private Integer id;
 	private String nome;
 	private double valor;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "exame")
 	private Set<Agenda> agendas = new HashSet<>();
-	
+	 
+	public Exame() {
+		
+	}
 	public Exame(Integer id, String nome, double valor) {
 		super();
 		this.id = id;
@@ -62,13 +64,17 @@ public class Exame implements Serializable {
 		this.valor = valor;
 	}
 
-	public Set<Agenda> getAgendas() {
-		return agendas;
-	}
+	
+	  public Set<Agenda> getAgendas() { 
+		  return agendas; 
+		  }
+	  
+	  public void setAgendas(Set<Agenda> agendas) {
+		  this.agendas = agendas; 
+		  }
+	 
 
-	public void setAgendas(Set<Agenda> agendas) {
-		this.agendas = agendas;
-	}
+
 
 	@Override
 	public int hashCode() {
