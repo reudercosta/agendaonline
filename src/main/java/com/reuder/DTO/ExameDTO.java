@@ -6,10 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.reuder.domain.Profissional;
+import com.reuder.domain.Exame;
 
-public class ProfissionalDTO implements Serializable {
-
+public class ExameDTO implements Serializable{
+	
 	/**
 	 * 
 	 */
@@ -18,17 +18,16 @@ public class ProfissionalDTO implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String regitroConselhoProfissional;
+	private double valor;
 	
-	public ProfissionalDTO() {
+	public ExameDTO() {
 		
 	}
 
-	public ProfissionalDTO(Profissional profissional) {
-		
-		id = profissional.getId();
-		nome = profissional.getNome();
-		regitroConselhoProfissional = profissional.getRegitroConselhoProfissional();
+	public ExameDTO(Exame obj) {
+		id = obj.getId();
+		nome = obj.getNome();
+		valor = obj.getValor();
 	}
 
 	public Integer getId() {
@@ -47,14 +46,13 @@ public class ProfissionalDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getRegitroConselhoProfissional() {
-		return regitroConselhoProfissional;
+	public double getValor() {
+		return valor;
 	}
 
-	public void setRegitroConselhoProfissional(String regitroConselhoProfissional) {
-		this.regitroConselhoProfissional = regitroConselhoProfissional;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,7 +69,7 @@ public class ProfissionalDTO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProfissionalDTO other = (ProfissionalDTO) obj;
+		ExameDTO other = (ExameDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -79,6 +77,6 @@ public class ProfissionalDTO implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+
 }
