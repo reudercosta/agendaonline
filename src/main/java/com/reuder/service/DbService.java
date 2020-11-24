@@ -36,7 +36,14 @@ public class DbService {
 
 
 	public void instantiateTestDataBase() throws ParseException {
-		Date d = new Date();
+		Date d = new Date(System.currentTimeMillis());
+		
+		Date d1 = new Date(System.currentTimeMillis()+864000000);
+		
+		Date d2 = new Date();
+		d2.setDate(26);
+		d2.setHours(11);
+		d2.setMinutes(00);
 		
 		// agendaRepo.save(agd);
 		Exame exame1 = new Exame(null, "consulta1", 10.00);
@@ -57,7 +64,8 @@ public class DbService {
 		// SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Agenda agd = new Agenda(null, d, pac1, exame1, prof1);
 		
-		Agenda agd1 = new Agenda(null, d, pac2, exame2, prof1);
+		
+		Agenda agd1 = new Agenda(null, d2, pac2, exame2, prof1);
 		
 		
 		agendaRepo.save(Arrays.asList(agd,agd1));

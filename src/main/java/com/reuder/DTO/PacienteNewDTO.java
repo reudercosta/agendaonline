@@ -23,7 +23,6 @@ public class PacienteNewDTO implements Serializable {
 	private Integer id;
 	
 	@NotEmpty(message = "Preenchimento Obrigatório!!")
-	@Email(message = "Email inválido!")
 	private String nome;
 	@NotEmpty(message = "Preenchimento Obrigatório!!")
 	private String rgOuCpf;
@@ -60,7 +59,7 @@ public class PacienteNewDTO implements Serializable {
 		return rgOuCpf;
 	}
 	public void setRgOuCpf(String rgOuCpf) {
-		rgOuCpf = rgOuCpf;
+		this.rgOuCpf = rgOuCpf;
 	}
 	public String getEmail() {
 		return email;

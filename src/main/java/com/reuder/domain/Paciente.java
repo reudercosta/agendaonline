@@ -92,7 +92,7 @@ public class Paciente implements Serializable {
 	}
 
 	public void setRgOuCpf(String rgOuCpf) {
-		rgOuCpf = rgOuCpf;
+		this.rgOuCpf = rgOuCpf;
 	}
 
 	public String getEmail() {
