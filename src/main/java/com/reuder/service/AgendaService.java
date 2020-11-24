@@ -3,13 +3,19 @@ package com.reuder.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.reuder.DTO.AgendaDTO;
 import com.reuder.DTO.AgendaNewDTO;
 import com.reuder.domain.Agenda;
-import com.reuder.domain.Profissional;
+import com.reuder.domain.Paciente;
 import com.reuder.repository.AgendaRepository;
+import com.reuder.repository.PacienteRepository;
+import com.reuder.security.UserSS;
+import com.reuder.service.exceptions.AuthorizationException;
 import com.reuder.service.exceptions.ObjectNotFoundException;
 
 @Service
@@ -17,6 +23,9 @@ public class AgendaService {
 
 	@Autowired
 	private AgendaRepository repo;
+	
+	@Autowired
+	private PacienteRepository pacienteRepository;
 
 	public Agenda find(Integer id) {
 		Agenda obj = repo.findOne(id);
@@ -41,6 +50,17 @@ public class AgendaService {
 		Agenda agenda = new Agenda(objDTO.getId(), objDTO.getInstante(), objDTO.getPaciente(), objDTO.getExame(),
 				objDTO.getProfissional());
 		return agenda;
+	}
+	
+	public Page<Agenda> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		UserSS user = UserService.authenticated();
+		if(user == null) {
+			throw new AuthorizationException("Acesso negado!!");
+		}
+		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		Paciente paciente = pacienteRepository.findOne(user.getId());
+		
+		return repo.findByPaciente(paciente, pageRequest);
 	}
 
 }

@@ -41,9 +41,16 @@ public class DbService {
 		Date d1 = new Date(System.currentTimeMillis()+864000000);
 		
 		Date d2 = new Date();
-		d2.setDate(26);
-		d2.setHours(11);
-		d2.setMinutes(00);
+		d2.setDate(24);
+		d2.setHours(14);
+		d2.setMinutes(30);
+		
+		
+		Date d3 = new Date();
+		d3.setDate(24);
+		d3.setHours(15);
+		d3.setMinutes(00);
+		
 		
 		// agendaRepo.save(agd);
 		Exame exame1 = new Exame(null, "consulta1", 10.00);
@@ -62,10 +69,12 @@ public class DbService {
 		profRepo.save(Arrays.asList(prof1));
 				
 		// SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		Agenda agd = new Agenda(null, d, pac1, exame1, prof1);
+		Agenda agd = new Agenda(null, d, pac2, exame1, prof1);
 		
 		
 		Agenda agd1 = new Agenda(null, d2, pac2, exame2, prof1);
+		
+		Agenda agd2 = new Agenda(null, d3, pac2, exame1, prof1);
 		
 		
 		agendaRepo.save(Arrays.asList(agd,agd1));
