@@ -10,6 +10,8 @@ import com.reuder.DTO.PacienteNewDTO;
 import com.reuder.domain.Paciente;
 import com.reuder.domain.Enum.Perfil;
 import com.reuder.repository.PacienteRepository;
+import com.reuder.security.UserSS;
+import com.reuder.service.exceptions.AuthorizationException;
 import com.reuder.service.exceptions.ObjectNotFoundException;
 
 @Service
@@ -19,8 +21,15 @@ public class PacienteService {
 	private PacienteRepository repo;
 	@Autowired
 	private BCryptPasswordEncoder pe;
+	
+	
 
 	public Paciente find(Integer id) {
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasHole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado!!");
+			
+		}
 		Paciente obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado, id: " + id + "Tipo: " + Paciente.class.getName());
