@@ -1,5 +1,7 @@
 package com.reuder.repository;
 
+import java.util.Date;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +18,9 @@ public interface AgendaRepository extends JpaRepository<Agenda, Integer> {
 	
 	@Transactional(readOnly = true)
 	Page<Agenda> findByPaciente(Paciente paciente, Pageable pageRquest);
+	
+	@Transactional(readOnly = true)
+	Agenda findByInstante(Integer data);
 
 
 }

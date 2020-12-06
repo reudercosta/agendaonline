@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Confirmation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div>
+		<h1>
+			Agenda - ID: <span th:text="${agenda.id}"> </span>
+		</h1>
+		<p>
+			Instante: <span th:text="${#dates.format(agenda.instante, 'dd/MM/yyyy hh:mm')}"></span>
+		</p>
+		<p>
+			Paciente: <span th:text="${agenda.paciente.nome}"></span>
+		</p>
+		<p>
+			Contatos: <span th:text="${agenda.paciente.telefone}"></span>
+		</p>
+		
+	</div>
+</body>
+</html>

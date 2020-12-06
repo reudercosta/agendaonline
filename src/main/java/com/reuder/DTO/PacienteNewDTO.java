@@ -28,6 +28,7 @@ public class PacienteNewDTO implements Serializable {
 	private String rgOuCpf;
 	
 	@NotEmpty(message = "Preenchimento Obrigatório!!")
+	@Email(message = "Email Invalido!! ")
 	private String email;
 	
 	@NotEmpty(message = "Preenchimento Obrigatório!!")

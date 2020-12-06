@@ -27,7 +27,7 @@ public class AgendaResource {
 	@Autowired
 	private AgendaService service;
 
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 
@@ -37,8 +37,8 @@ public class AgendaResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody AgendaNewDTO objDTO) {
-		Agenda obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> insert(@Valid @RequestBody Agenda obj) {
+	//	Agenda obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 

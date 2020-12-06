@@ -38,7 +38,11 @@ public class DbService {
 	public void instantiateTestDataBase() throws ParseException {
 		Date d = new Date(System.currentTimeMillis());
 		
-		Date d1 = new Date(System.currentTimeMillis()+864000000);
+				
+		Date d1 = new Date();
+		d1.setDate(24);
+		d1.setHours(15);
+		d1.setMinutes(30);
 		
 		Date d2 = new Date();
 		d2.setDate(24);
@@ -77,7 +81,7 @@ public class DbService {
 		Agenda agd2 = new Agenda(null, d3, pac2, exame1, prof1);
 		
 		
-		agendaRepo.save(Arrays.asList(agd,agd1));
+		agendaRepo.save(Arrays.asList(agd,agd1, agd2));
 	
 
 	}

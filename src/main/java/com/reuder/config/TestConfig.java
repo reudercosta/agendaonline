@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.expression.ParseException;
 
 import com.reuder.service.DbService;
+import com.reuder.service.EmailService;
+import com.reuder.service.MockEmailService;
 
 @Configuration
 @Profile("test")
@@ -22,6 +24,11 @@ public class TestConfig {
 
 		return true;
 	}
-
 	
+	@Bean	
+	public EmailService emailService() {
+		return new MockEmailService();
+	}
+	
+
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+ <!-- Site Title-->
+    <title>Dra. Dourado, Joana </title>
+    <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+</head>
+<body>
+<table class="container">
+	<thead>
+		<tr>
+		<th>ID</th>
+		<th>DATE</th>
+		<th>NOME PACIENTE</th>
+		<th>EXAME</th>
+		<th>VALOR DO EXAME</th>
+		<th>NOME PROFISSIONAL</th>
+		</tr>
+	</thead>
+ <tr th:each="agenda: ${agendas}">
+            <td><span th:text="${agenda.id}" class="text-white" > </span></td>
+            <td><span th:text="${agenda.instante}" class="text-white"> </span></td>
+            <td><span th:text="${agenda.paciente.nome}" class="text-white"> </span></td>
+            <td><span th:text="${agenda.exame.nome}" class="text-white"> </span></td>
+            <td><span th:text="${agenda.exame.valor}" class="text-white"> </span></td>
+    	    <td><span th:text="${agenda.profissional.nome}" class="text-white" > </span></td>
+ </tr>
+    
+</table>       
+         <!-- Java script-->
+    <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>

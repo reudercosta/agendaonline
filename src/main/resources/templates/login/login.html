@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Dra. Joana Dourado</title>
+    </head>
+    <body>
+         <form th:action="@{/login}" method="post">
+            <div><label> Email : <input type="text" name="email"/> </label></div>
+            <div><label> Senha: <input type="password" name="senha"/> </label></div>
+            <div><input type="submit"/></div>
+        </form>
+    </body>
+</html>

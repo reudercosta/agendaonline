@@ -13,7 +13,9 @@ import com.reuder.DTO.AgendaNewDTO;
 import com.reuder.domain.Agenda;
 import com.reuder.domain.Paciente;
 import com.reuder.repository.AgendaRepository;
+import com.reuder.repository.ExameRepository;
 import com.reuder.repository.PacienteRepository;
+import com.reuder.repository.ProfissionalRepository;
 import com.reuder.security.UserSS;
 import com.reuder.service.exceptions.AuthorizationException;
 import com.reuder.service.exceptions.ObjectNotFoundException;
@@ -26,6 +28,15 @@ public class AgendaService {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
+	
+	@Autowired
+	private ExameRepository exameRepository;
+	
+	@Autowired
+	private ProfissionalRepository profissionalRepository;
+	
+	@Autowired
+	private EmailService emailService;
 
 	public Agenda find(Integer id) {
 		Agenda obj = repo.findOne(id);
@@ -38,7 +49,13 @@ public class AgendaService {
 	@Transactional
 	public Agenda insert(Agenda obj) {
 		obj.setId(null);
+		obj.setInstante(obj.getInstante());
+		obj.setPaciente(pacienteRepository.findOne(obj.getPaciente().getId()));
+		obj.setExame(exameRepository.findOne(obj.getExame().getId()));
+		obj.setProfissional(profissionalRepository.findOne(obj.getProfissional().getId()));
 		repo.save(obj);
+		emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
 	}
 

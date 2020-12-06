@@ -22,9 +22,6 @@ import com.reuder.domain.Enum.Perfil;
 @Entity
 public class Paciente implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id

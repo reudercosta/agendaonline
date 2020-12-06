@@ -15,7 +15,7 @@ import com.reuder.domain.Paciente;
 import com.reuder.domain.Profissional;
 import com.reuder.service.validation.AgendaInsert;
 
-@AgendaInsert
+
 public class AgendaNewDTO implements Serializable{
 	
 	/**

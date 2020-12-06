@@ -39,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private JWTUtil jwtUtil;
 	
 	public static final String[] PUBLIC_MATCHERS = {
-			"/h2-console/**"
+			"/h2-console/**",
+			"/**"
 	};
 	
 	public static final String[] PUBLIC_MATCHERS_GET = {
@@ -49,7 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	};
 	public static final String[] PUBLIC_MATCHERS_POST = {
 		     "/pacientes/**",
-		     "/auth/**"
+		     "/auth/forgot/**",
+		     "/agendas/**",
+		     "/login/**"
 	};
 	
 	
@@ -77,11 +80,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Bean
 	CorsConfigurationSource CorsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+		configuration.setAllowedMethods(Arrays.asList("POST","PUT","GET","DELETE","OPTIONS"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		source.registerCorsConfiguration("/**",configuration);
 		return source;
 	}
-	
 	
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {

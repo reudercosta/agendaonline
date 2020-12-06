@@ -15,31 +15,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Agenda implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
 
-	
-	  @ManyToOne
-	  @JoinColumn(name = "paciente_id") 
-	  private Paciente paciente;
-	  
-	  @ManyToOne
-	  @JoinColumn(name ="exame_id") 
-	  private Exame exame;
-	  
-	  @ManyToOne
-	  @JoinColumn(name ="profissinal_id") 
-	  private Profissional profissional;
-	 
+	@ManyToOne
+	@JoinColumn(name = "paciente_id")
+	private Paciente paciente;
+
+	@ManyToOne
+	@JoinColumn(name = "exame_id")
+	private Exame exame;
+
+	@ManyToOne
+	@JoinColumn(name = "profissinal_id")
+	private Profissional profissional;
 
 	public Agenda() {
 
@@ -54,56 +49,45 @@ public class Agenda implements Serializable {
 		this.profissional = profissional;
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public Date getInstante() {
 		return instante;
 	}
-
 
 	public void setInstante(Date instante) {
 		this.instante = instante;
 	}
 
-
 	public Paciente getPaciente() {
 		return paciente;
 	}
-
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 
-
 	public Exame getExame() {
 		return exame;
 	}
-
 
 	public void setExame(Exame exame) {
 		this.exame = exame;
 	}
 
-
 	public Profissional getProfissional() {
 		return profissional;
 	}
 
-
 	public void setProfissional(Profissional profissional) {
 		this.profissional = profissional;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -112,7 +96,6 @@ public class Agenda implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -131,5 +114,24 @@ public class Agenda implements Serializable {
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Agenda ID:  ");
+		builder.append(id);
+		builder.append(" ");
+		builder.append("Instante: ");
+		builder.append(getInstante());
+		builder.append(" ");
+		builder.append("Paciente: ");
+		builder.append(getPaciente().getNome());
+		builder.append(" ");
+		builder.append("Exame: ");
+		builder.append(getExame().getNome());
+		builder.append(" ");
+		builder.append("Profissional: ");
+		builder.append(getProfissional().getNome());
+		return builder.toString();
+	}
+
 }
